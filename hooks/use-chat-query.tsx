@@ -2,6 +2,7 @@ import qs from "query-string";
 import {useInfiniteQuery} from "@tanstack/react-query";
 
 import {useSocket} from "@/components/providers/socket-provider";
+import {undefined} from "zod";
 
 interface ChatQueryProps {
     queryKey: string;
@@ -28,6 +29,7 @@ export const useChatQuery = ({queryKey, apiUrl, paramKey, paramValue}: ChatQuery
 
     const {data, fetchNextPage, hasNextPage, isFetchingNextPage, status} = useInfiniteQuery({
         queryKey: [queryKey],
+        initialPageParam: undefined,
         queryFn: fetchMessages,
         getNextPageParam: (lastPage) => lastPage?.nextCursor,
 
